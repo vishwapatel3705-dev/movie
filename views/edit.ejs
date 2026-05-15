@@ -1,0 +1,35 @@
+<%- include("partials/header") %>
+
+<section class="form-layout">
+  <div class="form-intro">
+    <p class="eyebrow">Update details</p>
+    <h1>Edit Movie</h1>
+    <p class="hero-copy">Refine the title, director, synopsis, or replace the uploaded movie file.</p>
+  </div>
+
+  <form class="card form-card" action="/movies/<%= movie._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" name="title" value="<%= movie.title %>" required>
+    </div>
+
+    <div class="form-group">
+      <label>Director</label>
+      <input type="text" name="director" value="<%= movie.director %>" required>
+    </div>
+
+    <div class="form-group">
+      <label>Synopsis</label>
+      <textarea name="description"><%= movie.description %></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Replace Movie File</label>
+      <input type="file" name="coverImage" accept="video/*,image/*">
+    </div>
+
+    <button>Update</button>
+  </form>
+</section>
+
+<%- include("partials/footer") %>

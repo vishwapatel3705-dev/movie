@@ -1,0 +1,36 @@
+<%- include("partials/header") %>
+
+<section class="form-layout">
+  <div class="form-intro">
+    <p class="eyebrow">New entry</p>
+    <h1>Add Movie</h1>
+    <p class="hero-copy">Choose a movie file or poster image, add the essentials, and it will appear in your vault.</p>
+  </div>
+
+  <form class="card form-card" action="/movies" method="POST" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" name="title" placeholder="Movie title" required>
+    </div>
+
+    <div class="form-group">
+      <label>Director</label>
+      <input type="text" name="director" placeholder="Director name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Synopsis</label>
+      <textarea name="description" placeholder="Write a short movie synopsis"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Movie File</label>
+      <input type="file" name="coverImage" accept="video/*,image/*">
+    </div>
+
+    <button>Add Movie</button>
+  </form>
+</section>
+
+<%- include("partials/footer") %>

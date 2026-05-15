@@ -1,0 +1,56 @@
+<%- include("partials/header") %>
+
+<section class="library-hero">
+  <div>
+    <p class="eyebrow">Personal cinema shelf</p>
+    <h1>Movie Collection</h1>
+    <p class="hero-copy">Upload films, keep posters, and play videos directly from your vault.</p>
+  </div>
+
+  <div class="hero-panel">
+    <span class="stat-value"><%= movies.length %></span>
+    <span class="stat-label"><%= movies.length === 1 ? "movie saved" : "movies saved" %></span>
+    <a class="primary-link" href="/new">Add Movie</a>
+  </div>
+</section>
+
+<section class="movie-grid">
+  <% movies.forEach(movie => { %>
+    <% const isVideo = movie.mediaType === "video" || /\.(mp4|webm|ogg|mov|m4v|avi|mkv)$/i.test(movie.coverImage || ""); %>
+    <article class="card movie-card">
+      <% if (movie.coverImage) { %>
+        <% if (isVideo) { %>
+          <video class="poster" src="/uploads/<%= movie.coverImage %>" controls preload="metadata"></video>
+        <% } else { %>
+          <img class="poster" src="/uploads/<%= movie.coverImage %>" alt="<%= movie.title %> poster">
+        <% } %>
+      <% } else { %>
+        <div class="poster poster-empty">No File</div>
+      <% } %>
+
+      <div class="movie-card-body">
+        <span class="media-pill"><%= isVideo ? "Video" : "Poster" %></span>
+        <h3><%= movie.title %></h3>
+        <p class="muted">Directed by <%= movie.director %></p>
+
+        <div class="actions">
+          <a class="button-link" href="/movies/<%= movie._id %>">Open</a>
+          <a class="text-link" href="/movies/<%= movie._id %>/edit">Edit</a>
+
+          <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
+            <button class="danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </article>
+  <% }) %>
+</section>
+
+<% if (!movies.length) { %>
+  <div class="empty-state">
+    <h2>No movies yet</h2>
+    <p>Add the first title to start building your collection.</p>
+  </div>
+<% } %>
+
+<%- include("partials/footer") %>

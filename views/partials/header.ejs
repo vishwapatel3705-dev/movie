@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= pageTitle ? pageTitle + " | CineVault" : "CineVault" %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="site-nav">
+        <a class="brand" href="/movies">
+            <span class="brand-mark">CV</span>
+            <span>CineVault</span>
+        </a>
+        <% if (userId) { %>
+            <div class="nav-links">
+                <a href="/movies">Movies</a>
+                <a class="nav-cta" href="/new">Add Movie</a>
+                <a href="/logout">Logout</a>
+            </div>
+        <% } else { %>
+            <div class="nav-links">
+                <a href="/signin">Signin</a>
+                <a class="nav-cta" href="/signup">Signup</a>
+            </div>
+        <% } %>
+    </nav>
+        
+<div class="container">
